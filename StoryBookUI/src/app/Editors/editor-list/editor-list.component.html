@@ -1,0 +1,34 @@
+<h2>Writers</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="editorId">
+        <th mat-header-cell *matHeaderCellDef> Editor Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.editorId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editorName">
+        <th mat-header-cell *matHeaderCellDef> Editor Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.editorName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isFlowing">
+        <th mat-header-cell *matHeaderCellDef> Flowing </th>
+        <td mat-cell *matCellDef="let element">
+            <button *ngIf="!element.isFlowing" mat-flat-button color="primary" (click)="followWriter(element.editorId)">
+                Follow </button>
+            <button *ngIf="element.isFlowing" mat-flat-button color="warn" (click)="unFollowWriter(element.editorId)">Un
+                Follow </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5,10,20,50]" showFirstLastButtons
+    [length]="noOfRecords" [pageSize]="pageSize" (page)="updatePagination($event)"></mat-paginator>

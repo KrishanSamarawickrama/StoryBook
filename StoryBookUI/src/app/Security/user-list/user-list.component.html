@@ -1,0 +1,74 @@
+<h2>Users</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="UserId">
+    <th mat-header-cell *matHeaderCellDef> UserId </th>
+    <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="FirstName">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="LastName">
+    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="EmailAddress">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="UserRole">
+    <th mat-header-cell *matHeaderCellDef> User Role </th>
+    <td mat-cell *matCellDef="let element"> {{element.userRole}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="IsEditor">
+    <th mat-header-cell *matHeaderCellDef> Editor </th>
+    <td mat-cell *matCellDef="let element">
+      <button *ngIf="element.isEditor === 'FALSE'" mat-flat-button color="primary" [swal]="{
+        title:'Confirmation',
+        text: 'Do you want to make this user an editor ?',
+        icon: 'question',
+        showCancelButton: true,        
+        confirmButtonText: 'Yes !'
+      }" (confirm)="makeWriter(element.userId)"> Make Editor </button>
+      <button *ngIf="element.isEditor === 'TRUE'" mat-flat-button color="warn" [swal]="{
+        title:'Confirmation',
+        text: 'Do you want to make this user a normal user ?',
+        icon: 'question',
+        showCancelButton: true, 
+        confirmButtonText: 'Yes !'
+      }" (confirm)="unMakeWriter(element.userId)">Un Make Editor </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="IsBanned">
+    <th mat-header-cell *matHeaderCellDef> Baned </th>
+    <td mat-cell *matCellDef="let element">
+      <button *ngIf="element.isBanned === 'FALSE'" mat-flat-button color="warn" [swal]="{
+        title:'Confirmation',
+        text: 'Do you want to ban this user ?',
+        icon: 'warning',
+        showCancelButton: true,       
+        confirmButtonText: 'Yes !'
+      }" (confirm)="banUser(element.userId)"> Ban User </button>
+      <button *ngIf="element.isBanned === 'TRUE'" mat-flat-button color="primary" [swal]="{
+        title:'Confirmation',
+        text: 'Do you want to un ban this user ?',
+        icon: 'warning',
+        showCancelButton: true,       
+        confirmButtonText: 'Yes !'
+      }" (confirm)="unBanUser(element.userId)">Un Ban User </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5,10,20,50]" showFirstLastButtons
+  [length]="noOfRecords" [pageSize]="pageSize" (page)="updatePagination($event)"></mat-paginator>

@@ -1,0 +1,23 @@
+.nav-bar {
+  display: flex;
+  position: static;
+  top: 0;
+  z-index: 1;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.nav-item {
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-item-right-item {
+  margin: 0 0.25rem;
+}
+
+.nav-icon{
+    margin: 0 0.25rem;
+    margin-right: 1rem;
+}

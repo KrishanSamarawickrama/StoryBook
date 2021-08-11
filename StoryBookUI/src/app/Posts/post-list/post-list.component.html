@@ -1,0 +1,42 @@
+<div class="search-editors">
+  <form>
+    <mat-form-field>
+      <input
+        type="text"
+        placeholder="Search Editor"
+        matInput
+        [formControl]="searchControl"
+        [matAutocomplete]="auto"
+      />
+    </mat-form-field>
+    <mat-autocomplete #auto (optionSelected)="optionSelected($event)">
+      <mat-option *ngFor="let editor of editorsToDisplay" [value]="editor">
+        <strong>{{ editor.editorName }}</strong> &nbsp; &nbsp; <small>{{ editor.editorId }}</small>       
+      </mat-option>
+    </mat-autocomplete>
+  </form>
+</div>
+
+<div class="post-list">
+  
+  <h3 *ngIf="dataSource.length <= 0">Follow some writers for exiting stories.</h3> 
+  
+  <mat-card *ngFor="let post of dataSource" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{post.editorName}}</mat-card-title>
+      <mat-card-subtitle>{{post.userId}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+      <p>{{post.postContent}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  
+
+</div>

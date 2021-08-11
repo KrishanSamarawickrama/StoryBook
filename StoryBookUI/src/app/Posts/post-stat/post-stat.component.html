@@ -1,0 +1,29 @@
+<h2>Post Statistics</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | date : 'yyyy-MMM-dd'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SingleVowelCount">
+        <th mat-header-cell *matHeaderCellDef> Single Vowel Count </th>
+        <td mat-cell *matCellDef="let element"> {{element.singleVowelCount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PairVowelCount">
+        <th mat-header-cell *matHeaderCellDef> Pair Vowel Count </th>
+        <td mat-cell *matCellDef="let element"> {{element.pairVowelCount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="TotalWordCount">
+        <th mat-header-cell *matHeaderCellDef> TotalWordCount </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalWordCount}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5,10,20,50]" showFirstLastButtons [length]="noOfRecords"
+    [pageSize]="pageSize" (page)="updatePagination($event)"></mat-paginator>

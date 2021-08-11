@@ -1,0 +1,73 @@
+<p>
+    <mat-toolbar class="nav-bar" color="primary">
+
+        <div class="nav-item">
+            <div class="nav-icon">
+                <a mat-icon-button class="example-icon" routerLink="/">
+                    <mat-icon>auto_stories</mat-icon>
+                </a>
+                <span>Story Book</span>
+            </div>
+
+            <div class="nav-item-right-item">                
+                <app-authorized-view>
+                    <ng-container Authorized>
+                        <a mat-fab color="warn" routerLink="/">
+                            <mat-icon>home</mat-icon>
+                        </a>
+                    </ng-container>
+                </app-authorized-view>
+            </div>
+
+            <div class="nav-item-right-item">
+                <app-authorized-view>
+                    <ng-container Authorized>
+                        <a routerLink="writers" mat-flat-button> Writers </a>
+                    </ng-container>
+                </app-authorized-view>
+            </div>
+
+            <div class="nav-item-right-item">
+                <app-authorized-view [userRole]="['M']">
+                    <ng-container Authorized>
+                        <a routerLink="users" mat-flat-button> Users </a>
+                    </ng-container>
+                </app-authorized-view>
+            </div>
+
+            <div class="nav-item-right-item">
+                <app-authorized-view [userRole]="['M']">
+                    <ng-container Authorized>
+                        <a routerLink="stat" mat-flat-button> Statistics </a>
+                    </ng-container>
+                </app-authorized-view>
+            </div>
+
+        </div>
+
+        <div class="nav-item">
+
+            <div class="nav-item-right-item">
+                <app-authorized-view [userRole]="['W','M']">
+                    <ng-container Authorized>
+                        <button mat-raised-button color="accent" (click)="openCreateDialog()">
+                            <mat-icon>create</mat-icon> Create Post
+                        </button>
+                    </ng-container>
+                </app-authorized-view>
+            </div>
+
+            <div class="nav-item-right-item">
+                <app-authorized-view Authorized>
+                    <ng-container Authorized>
+                        <button mat-raised-button (click)="logOut()">
+                            Log Out
+                        </button>
+                    </ng-container>
+                </app-authorized-view>
+            </div>
+
+        </div>
+
+    </mat-toolbar>
+</p>

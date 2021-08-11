@@ -1,0 +1,13 @@
+<h3>Create Post</h3>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>What's on your mind ?</mat-label>
+        <textarea formControlName="PostContent" matInput></textarea>
+        <mat-error>Post length must be between 3 and 500.</mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="warn" (click)="onNoClick()"> Cancel </button>
+        <button mat-raised-button color="accent" (click)="post()" cdkFocusInitial [disabled]="!form.valid"> Post </button>
+    </div>
+</form>
